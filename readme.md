@@ -3,7 +3,7 @@
 Speak up is an easy to use extremely customizable contact form plugin for WordPress. SpeakUp gives you all the functionality you need right out of the box, however we don't like to intrude with your design choice so we have no front facing CSS, you style it all yourself!
 
 ## Current Version
-0.0.0.1
+0.0.1
 
 ## Features
 * Multiple user emails
