@@ -37,7 +37,6 @@ html {
 .forms-list li{
 	background: #f1f1f1;
 	position: relative;
-	padding: 10px 15px;
 	border: solid 1px #ddd;
 	margin-top: 15px;
 }
@@ -46,6 +45,11 @@ html {
 }
 .forms-list h4{
 	margin: 0;
+}
+.forms-list a{
+	display: block;
+	text-decoration: none;
+	padding: 10px 15px;
 }
 .forms-list .fa{
 	position: absolute;
