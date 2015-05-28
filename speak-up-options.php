@@ -28,8 +28,9 @@ function speak_up_init(){
 
 function speak_up_setting_fields(){
 	$options = get_option('speak_up_options');
-	
-	echo '<input type="text" id="speak_up_fields" name="speak_up_options[fields]" value="' . $options['fields'] . '">';
+
+	// echo '<input type="text" id="speak_up_fields" name="speak_up_options[fields]" value="' . $options['fields'] . '">';
+	echo '<textarea id="speak_up_fields" name="speak_up_options[fields]" style="width: 100%; min-height: 150px;">' . $options['fields'] . "</textarea>";
 }
 
 function speak_up_form_fields(){ ?>
