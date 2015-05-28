@@ -5,6 +5,7 @@ SpeakUp = (function($){
 
 	var app = {},
 		_this,
+		saveValue = [],
 		elements = {
 			addField: $('#js-add-field'),
 			addRecipient: $('#js-add-recipient'),
@@ -77,7 +78,6 @@ SpeakUp = (function($){
 
 
 	function generateFieldHtml(field){
-		console.log(field);
 		var html = '';
 
 		html += '<li>';
@@ -89,6 +89,10 @@ SpeakUp = (function($){
 			html += '</a>';
 
 		html += '</li>';
+
+		//Append the field to the input to save to wordpress
+		saveValue.push(field);
+		$('#speak_up_fields').val(JSON.stringify(saveValue));
 
 		return html;
 	};
