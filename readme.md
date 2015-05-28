@@ -15,3 +15,4 @@ Speak up is an easy to use extremely customizable contact form plugin for WordPr
 ## Future Features
 * Multiple forms
 * Ability to manage messages within WordPress
+* CRM Integration
