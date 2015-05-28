@@ -8,6 +8,7 @@ html {
 .postbox{
 	padding: 20px;
 	margin-top: 20px;
+	margin-bottom: 0;
 }
 .hndle{
 	cursor: default !important;
@@ -57,5 +58,14 @@ html {
 .add-more{
 	width: 100%;
 	display: block;
-	text-align: right;
+}
+.add-more select, .add-more input[type="text"]{
+	width: 100%;
+}
+.button-primary{
+	margin-top: 20px !important;
+}
+.no-fields{
+	color: #ddd;
+	font-style: italic;
 }

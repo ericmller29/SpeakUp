@@ -26,7 +26,11 @@ function speak_up_form_fields(){ ?>
 		<div class="postbox-container form-fields">		
 			<div class="postbox">
 				<h3 class="hndle">Form Fields</h3>
-				<ul class="forms-list">
+
+				<p class="no-fields">
+					You have not created any fields yet!
+				</p>
+				<!-- <ul class="forms-list">
 					<li>
 						<h4>Text Box</h4>
 						<a href="#" alt="Remove the text box" title="Remove the text box">
@@ -39,16 +43,53 @@ function speak_up_form_fields(){ ?>
 							<i class="fa fa-times-circle"></i>
 						</a>
 					</li>
-				</ul>
-				<div class="add-more">
-					<button class="button button-secondary" type="submit">Add A Field</button>
-				</div>
+				</ul> -->
 			</div>
 		</div>
 
 		<div class="postbox-container users">		
 			<div class="postbox">
-				<h3 class="hndle">Email Addresses</h3>
+				<h3 class="hndle">Recipients</h3>
+				<p class="no-fields">
+					You have not added any recipients yet!
+				</p>
+			</div>
+		</div>
+
+		<div class="postbox-container add-more">
+			<div class="postbox">
+				<h3 class="hndle">Add a new field</h3>
+				<table class="form-table">
+					<tbody>
+						<tr>
+							<td>
+								<select>
+									<option>Field Type</option>
+									<option value="text">Text Box</option>
+									<option value="text">Text Box</option>
+									<option value="text">Text Box</option>
+								</select>
+							</td>
+							<td>
+								<input type="text" name="field_label" placeholder="Field Label">
+							</td>
+							<td>
+							<input type="text" name="field_name" placeholder="field_name" disabled="disabled">
+							</td>
+							<td>
+								<label for="is_required">
+									<input type="checkbox" name="is_required" id="is_required">
+									Is this field required?
+								</label>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3">
+								<button class="button button-secondary" type="submit">Add A Field</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
