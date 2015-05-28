@@ -108,10 +108,10 @@ SpeakUp = (function($){
 
 		html += '<li>';
 
-			html += '<h4>' + field.label + '</h4>';
+			html += '<a href="#" alt="Edit the ' + field.label + ' field" title="Edit the ' + field.label + ' field">';
+				html += '<h4>' + field.label + '</h4>';
 
-			html += '<a href="#" alt="Remove the ' + field.label + '" title="Remove the ' + field.label + '">';
-				html += '<i class="fa fa-times-circle"></i>';
+				html += '<i class="fa fa-caret-down"></i>';
 			html += '</a>';
 
 		html += '</li>';

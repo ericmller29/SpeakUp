@@ -30,11 +30,21 @@ function speak_up_setting_fields(){
 	$options = get_option('speak_up_options');
 
 	// echo '<input type="text" id="speak_up_fields" name="speak_up_options[fields]" value="' . $options['fields'] . '">';
-	echo '<textarea id="speak_up_fields" name="speak_up_options[fields]" style="width: 100%; min-height: 150px;">' . $options['fields'] . "</textarea>";
+	echo '<textarea id="speak_up_fields" name="speak_up_options[fields]" style="display: none;">' . $options['fields'] . "</textarea>";
 }
 
 function speak_up_form_fields(){ ?>
+	
+	<?php $options = get_option('speak_up_options'); ?>
+
 	<div class="options-container">
+		<div class="postbox-container subject-line">		
+			<div class="postbox">
+				<h3 class="hndle">Subject Line</h3>
+				<input type="text" name="speak_up_options[subject_line]" value="<?php echo (isset($options['subject_line'])) ? $options['subject_line'] : 'You received a message from %first_name% %last_name <%email%> - Speak Up'; ?>">
+			</div>
+		</div>
+
 		<div class="postbox-container form-fields">		
 			<div class="postbox">
 				<h3 class="hndle">Form Fields</h3>
