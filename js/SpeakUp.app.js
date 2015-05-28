@@ -5,7 +5,10 @@ SpeakUp = (function($){
 
 	var app = {},
 		_this,
-		saveValue = [],
+		saveValue = {
+			fields: [],
+			recipients: []
+		},
 		elements = {
 			addField: $('#js-add-field'),
 			addRecipient: $('#js-add-recipient'),
@@ -16,6 +19,7 @@ SpeakUp = (function($){
 	app.init = function(){
 		_this = this;
 
+		_this.checkForValues();
 		_this.addListeners();
 	};
 
@@ -26,10 +30,32 @@ SpeakUp = (function($){
 		elements.fieldLabel.on('keyup', _this.generateName);
 	};
 
+	app.checkForValues = function(){
+		var currentfields = $('#speak_up_fields').val();
+
+		if(currentfields === ''){
+			return true;
+		}
+
+		if($('#js-no-fields').is(':visible')){
+			$('#js-no-fields').hide();
+		}
+
+		currentfields = JSON.parse(currentfields);
+
+		var fields = currentfields.fields;
+
+		for(var i = 0; i <= fields.length-1; i++){
+
+			$('#js-fields-list').append(generateFieldHtml(fields[i]));
+		}
+	};
+
 	app.addAField = function(e){
 		var field = {
 			name: elements.fieldName.val(),
 			label: elements.fieldLabel.val(),
+			type: $('#js-field-type').val(),
 			required: $('#js-field-required').is(':checked')
 		};
 
@@ -91,7 +117,7 @@ SpeakUp = (function($){
 		html += '</li>';
 
 		//Append the field to the input to save to wordpress
-		saveValue.push(field);
+		saveValue.fields.push(field);
 		$('#speak_up_fields').val(JSON.stringify(saveValue));
 
 		return html;
