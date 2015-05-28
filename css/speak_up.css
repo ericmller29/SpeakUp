@@ -12,6 +12,7 @@ html {
 }
 .hndle{
 	cursor: default !important;
+	position: relative;
 }
 .postbox h3{
 	margin: 0;
@@ -68,4 +69,9 @@ html {
 .no-fields{
 	color: #ddd;
 	font-style: italic;
+}
+.add-recipient{
+	position: absolute;
+	right: 15px;
+	font-size: 1.3em !important;
 }

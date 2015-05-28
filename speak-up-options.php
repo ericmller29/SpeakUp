@@ -4,18 +4,21 @@
 //add admin options menu item
 add_action('admin_menu', 'add_speak_up_admin');
 add_action('admin_init', 'speak_up_init');
+add_action('admin_enqueue_scripts', 'speak_up_assets');
 
 
 function add_speak_up_admin(){
 	add_options_page('Speak Up', 'Speak Up', 'manage_options', 'speak-up', 'speak_up_options_page');
 }
 
-function speak_up_init(){
-	wp_register_style('speak-up', plugin_dir_url( __FILE__ ) . 'css/speak_up.css');
-	wp_register_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
-	wp_enqueue_style('speak-up');
-	wp_enqueue_style('font-awesome');
+function speak_up_assets(){
+	wp_enqueue_style('speak-up', plugin_dir_url( __FILE__ ) . 'css/speak_up.css');
+	wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
 
+	wp_enqueue_script('speak-up', plugin_dir_url( __FILE__ ) . 'js/SpeakUp.app.js', array(), false, true);
+}
+
+function speak_up_init(){
 	register_setting('speak_up_options', 'speak_up_options', 'speak_up_options_validate');
 
 	add_settings_section('speak_up_fields', '', 'speak_up_form_fields', 'speak-up');
@@ -49,7 +52,12 @@ function speak_up_form_fields(){ ?>
 
 		<div class="postbox-container users">		
 			<div class="postbox">
-				<h3 class="hndle">Recipients</h3>
+				<h3 class="hndle">
+					Recipients
+					<a href="#" alt="Add a recipient" title="Add a recipient" class="add-recipient">
+						<i class="fa fa-plus-circle"></i>
+					</a>
+				</h3>
 				<p class="no-fields">
 					You have not added any recipients yet!
 				</p>
@@ -85,7 +93,7 @@ function speak_up_form_fields(){ ?>
 						</tr>
 						<tr>
 							<td colspan="3">
-								<button class="button button-secondary" type="submit">Add A Field</button>
+								<button class="button button-secondary" type="submit" id="js-add-field">Add A Field</button>
 							</td>
 						</tr>
 					</tbody>
