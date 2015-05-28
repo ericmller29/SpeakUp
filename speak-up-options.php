@@ -21,7 +21,16 @@ function speak_up_assets(){
 function speak_up_init(){
 	register_setting('speak_up_options', 'speak_up_options', 'speak_up_options_validate');
 
-	add_settings_section('speak_up_fields', '', 'speak_up_form_fields', 'speak-up');
+	add_settings_section('speak_up_main', '', 'speak_up_form_fields', 'speak-up');
+
+	add_settings_field('speak_up_fields', '', 'speak_up_setting_fields', 'speak-up', 'speak_up_main');
+}
+
+function speak_up_setting_fields(){
+	$options = get_option('speak_up_options');
+
+	print_r($options);
+	echo '<input type="text" id="speak_up_fields" name="speak_up_options[fields]" value="' . $options['fields'] . '">';
 }
 
 function speak_up_form_fields(){ ?>
@@ -30,23 +39,11 @@ function speak_up_form_fields(){ ?>
 			<div class="postbox">
 				<h3 class="hndle">Form Fields</h3>
 
-				<p class="no-fields">
+				<p class="no-fields" id="js-no-fields">
 					You have not created any fields yet!
 				</p>
-				<!-- <ul class="forms-list">
-					<li>
-						<h4>Text Box</h4>
-						<a href="#" alt="Remove the text box" title="Remove the text box">
-							<i class="fa fa-times-circle"></i>
-						</a>
-					</li>
-					<li>
-						<h4>Text Box</h4>
-						<a href="#" alt="Remove the text box" title="Remove the text box">
-							<i class="fa fa-times-circle"></i>
-						</a>
-					</li>
-				</ul> -->
+				<ul class="forms-list" id="js-fields-list"></ul>
+
 			</div>
 		</div>
 
@@ -54,7 +51,7 @@ function speak_up_form_fields(){ ?>
 			<div class="postbox">
 				<h3 class="hndle">
 					Recipients
-					<a href="#" alt="Add a recipient" title="Add a recipient" class="add-recipient">
+					<a href="#" alt="Add a recipient" title="Add a recipient" class="add-recipient" id="js-add-recipient">
 						<i class="fa fa-plus-circle"></i>
 					</a>
 				</h3>
@@ -71,7 +68,7 @@ function speak_up_form_fields(){ ?>
 					<tbody>
 						<tr>
 							<td>
-								<select>
+								<select id="js-field-type">
 									<option>Field Type</option>
 									<option value="text">Text Box</option>
 									<option value="text">Text Box</option>
@@ -79,14 +76,14 @@ function speak_up_form_fields(){ ?>
 								</select>
 							</td>
 							<td>
-								<input type="text" name="field_label" placeholder="Field Label">
+								<input type="text" name="field_label" placeholder="Field Label" id="js-field-label">
 							</td>
 							<td>
-							<input type="text" name="field_name" placeholder="field_name" disabled="disabled">
+							<input type="text" name="field_name" placeholder="field_name" id="js-field-name" disabled="disabled">
 							</td>
 							<td>
-								<label for="is_required">
-									<input type="checkbox" name="is_required" id="is_required">
+								<label for="js-field-required">
+									<input type="checkbox" name="is_required" id="js-field-required">
 									Is this field required?
 								</label>
 							</td>
@@ -103,6 +100,11 @@ function speak_up_form_fields(){ ?>
 	</div>
 
 <?php }
+
+function speak_up_options_validate($input){
+
+	return $input;
+}
 
 function speak_up_options_page(){ ?>
 	
