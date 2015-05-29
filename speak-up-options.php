@@ -23,20 +23,13 @@ function speak_up_init(){
 
 	add_settings_section('speak_up_main', '', 'speak_up_form_fields', 'speak-up');
 
-	add_settings_field('speak_up_fields', '', 'speak_up_setting_fields', 'speak-up', 'speak_up_main');
-}
-
-function speak_up_setting_fields(){
-	$options = get_option('speak_up_options');
-
-	// echo '<input type="text" id="speak_up_fields" name="speak_up_options[fields]" value="' . $options['fields'] . '">';
-	echo '<textarea id="speak_up_fields" name="speak_up_options[fields]" style="display: none;">' . $options['fields'] . "</textarea>";
+	// add_settings_field('speak_up_fields', '', 'speak_up_setting_fields', 'speak-up', 'speak_up_main');
 }
 
 function speak_up_form_fields(){ ?>
 	
 	<?php $options = get_option('speak_up_options'); ?>
-
+	<textarea id="speak_up_fields" name="speak_up_options[fields]" style="display: none;"><?php echo $options['fields']; ?></textarea>
 	<div class="options-container">
 		<div class="postbox-container subject-line">		
 			<div class="postbox">

@@ -40,6 +40,14 @@ html {
 	border: solid 1px #ddd;
 	margin-top: 15px;
 }
+.forms-list .options{
+	border-top: solid 1px #ddd;
+	padding: 15px;
+	display: none;
+}
+.forms-list .options h4{
+	margin-bottom: 15px;
+}
 .forms-list li:first-child{
 	margin-top: 0;
 }
@@ -50,6 +58,12 @@ html {
 	display: block;
 	text-decoration: none;
 	padding: 10px 15px;
+	position: relative;
+}
+.forms-list a:focus{
+	outline: 0;
+	box-shadow: none;
+	-webkit-box-shadow: none;
 }
 .forms-list .fa{
 	position: absolute;
@@ -73,6 +87,7 @@ html {
 .no-fields{
 	color: #ddd;
 	font-style: italic;
+	margin-bottom: 0;
 }
 .add-recipient{
 	position: absolute;
@@ -82,4 +97,64 @@ html {
 .subject-line input{
 	width: 100%;
 	margin-top: 15px;
+}
+
+.grid{
+	display: block;
+}
+.grid:after{
+	display: block;
+	content: '';
+	clear: both;
+}
+.grid label{
+	margin-bottom: 5px;
+	display: block;
+	font-weight: bold;
+}
+.grid input[type="text"]{
+	width: 100%;
+	padding: 5px 10px;
+	font-size: 0.8em;
+}
+.half{
+	display: block;
+	float: left;
+	width: 48.5%;
+	margin-bottom: 15px;
+}
+.half.right{
+	float: right;
+}
+.full{
+	display: block;
+	width: 100%;
+	clear: both;
+}
+
+.actions{
+	margin-top: 15px;
+	display: block;
+	width: 100%;
+	clear: both;
+}
+.actions li{
+	display: inline-block;
+	border: none;
+	width: auto;
+	margin-left: 15px;
+	margin-top: 0;
+}
+.actions li:first-child{
+	margin: 0;
+}
+.actions a{
+	padding: 0;
+	text-decoration: underline;
+}
+.actions .delete{
+	color: #CF000F;
+}
+.actions .delete:hover{
+	color: #F22613;
 }
