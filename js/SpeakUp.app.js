@@ -180,7 +180,7 @@ SpeakUp = (function($){
 							html += '</div>';
 							html += '<div class="half right">';
 								html += '<label for="container_class">Container Class:</label>';
-								html += '<input type="text" name="container_class" id="container_class" placeholder="Container Class">';
+								html += '<input type="text" name="container_class" id="container_class" placeholder=".col-md-6">';
 							html += '</div>';
 
 							html += '<div class="full">';
