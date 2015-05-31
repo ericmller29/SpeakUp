@@ -1,4 +1,4 @@
-<?php
+<?php defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 
 //add admin options menu item
@@ -58,9 +58,10 @@ function speak_up_form_fields(){ ?>
 						<i class="fa fa-plus-circle"></i>
 					</a>
 				</h3>
-				<p class="no-fields">
+				<p class="no-fields" id="js-no-recipients">
 					You have not added any recipients yet!
 				</p>
+				<ul class="recipients-list" id="js-recipients-list"></ul>
 			</div>
 		</div>
 
@@ -74,8 +75,9 @@ function speak_up_form_fields(){ ?>
 								<select id="js-field-type">
 									<option>Field Type</option>
 									<option value="text">Text Box</option>
-									<option value="text">Text Box</option>
-									<option value="text">Text Box</option>
+									<option value="email">Email</option>
+									<option value="textarea">Text Area</option>
+									<option value="select">Select Box</option>
 								</select>
 							</td>
 							<td>
@@ -86,7 +88,7 @@ function speak_up_form_fields(){ ?>
 							</td>
 							<td>
 								<label for="js-field-required">
-									<input type="checkbox" name="is_required" id="js-field-required">
+									<input type="checkbox" name="is_required" id="js-field-required-add">
 									Is this field required?
 								</label>
 							</td>

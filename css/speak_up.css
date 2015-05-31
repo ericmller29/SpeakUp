@@ -152,6 +152,14 @@ html {
 	padding: 0;
 	text-decoration: underline;
 }
+.actions button{
+	padding: 0;
+	text-decoration: underline;
+	background: none;
+	border: none;
+	color: #0073aa;
+	cursor: pointer;
+}
 .actions .delete{
 	color: #CF000F;
 }

@@ -32,14 +32,21 @@ SpeakUp = (function($){
 		// elements.deleteBtn.on('click', deleteField);
 		$('body').on('click', '#js-delete-field', deleteField);
 		$('body').on('click', '#js-toggle-options', toggleOptions);
+
+		$('body').on('click', '#js-save-field', saveTheField);
 	};
 
 	app.checkForValues = function(){
+		if($('#speak_up_fields').val() === ''){
+			return true;
+		}
+
 		var currentfields = JSON.parse($('#speak_up_fields').val()),
 			fields = currentfields.fields;
 
 		if(fields.length === 0){
 			$('#js-fields-list').hide();
+
 			return true;
 		}
 
@@ -48,7 +55,6 @@ SpeakUp = (function($){
 		}
 
 		for(var i = 0; i <= fields.length-1; i++){
-
 			$('#js-fields-list').append(generateFieldHtml(fields[i]));
 		}
 	};
@@ -58,7 +64,10 @@ SpeakUp = (function($){
 			name: elements.fieldName.val(),
 			label: elements.fieldLabel.val(),
 			type: $('#js-field-type').val(),
-			required: $('#js-field-required').is(':checked')
+			required: $('#js-field-required-add').is(':checked'),
+			placeholder: "",
+			field_id: "",
+			container_class: ""	
 		};
 
 		if($('#js-no-fields').is(':visible')){
@@ -75,7 +84,14 @@ SpeakUp = (function($){
 	};
 
 	app.addARecipient = function(e){
-		alert('Recipient Added');
+		
+		if($('#js-no-recipients').is(':visible')){
+			$('#js-no-recipients').hide();
+		}
+
+		if(!$('#js-recipients-list').is(':visible')){
+			$('#js-recipients-list').show();
+		}
 
 		e.preventDefault();
 	};
@@ -131,7 +147,7 @@ SpeakUp = (function($){
 		* Up three: div.options
 		* Up four: li (correct parent)
 		*/
-		var index = $(this).parent().parent().parent().parent().index(),
+		var index = $(this).parent().parent().parent().parent().parent().index(),
 			prompt = window.confirm('Are you sure you want to delete this field?');
 
 		if(prompt){
@@ -151,6 +167,37 @@ SpeakUp = (function($){
 		e.preventDefault();
 	}
 
+	function saveTheField(e){
+		/*
+		* this is annoying. It just goes up the tree
+		* Start: a.delete
+		* Up one: ul.actions li
+		* Up two: ul.actions
+		* Up three: div.options
+		* Up four: li (correct parent)
+		*/
+		var index = $(this).parent().parent().parent().parent().parent().index(),
+			values = $(this).parent().parent().parent(),
+			field = saveValue.fields[index],
+			placeholder = values.find('#placeholder').val(),
+			field_name = values.find('#field_name').val(),
+			field_id = values.find('#field_id').val(),
+			container_class = values.find('#container_class').val(),
+			field_required = values.find('#js-field-required').is(':checked');
+
+		field.placeholder = placeholder;
+		field.name = field_name;
+		field.field_id = field_id;
+		field.container_class = container_class;
+		field.required = field_required;
+
+		$('#speak_up_fields').val(JSON.stringify(saveValue));
+
+		$(this).parent().parent().parent().parent().parent().find('.options').slideUp('fast');
+		$(this).parent().parent().parent().parent().parent().removeClass('active');
+		e.preventDefault();
+	}
+
 	function generateFieldHtml(field){
 		var html = '';
 
@@ -162,6 +209,7 @@ SpeakUp = (function($){
 				html += '<i class="fa fa-caret-down"></i>';
 			html += '</a>';
 			html += '<div class="options">';
+				html += '<form class="options-form">';
 
 				switch(field.type){
 					case "text":
@@ -172,19 +220,19 @@ SpeakUp = (function($){
 							html += '</div>';
 							html += '<div class="half right">';
 								html += '<label for="placeholder">Placeholder:</label>';
-								html += '<input type="text" name="placeholder" id="placeholder" placeholder="Placeholder">';
+								html += '<input type="text" name="placeholder" id="placeholder" placeholder="Placeholder" value="' + field.placeholder + '">';
 							html += '</div>';
 							html += '<div class="half">';
 								html += '<label for="field_id">Field ID:</label>';
-								html += '<input type="text" name="field_id" id="field_id" placeholder="Field ID">';
+								html += '<input type="text" name="field_id" id="field_id" placeholder="Field ID" value="' + field.field_id + '">';
 							html += '</div>';
 							html += '<div class="half right">';
 								html += '<label for="container_class">Container Class:</label>';
-								html += '<input type="text" name="container_class" id="container_class" placeholder=".col-md-6">';
+								html += '<input type="text" name="container_class" id="container_class" placeholder=".col-md-6" value="' + field.container_class + '">';
 							html += '</div>';
 
 							html += '<div class="full">';
-								html += '<label for="js-field-required">';
+								html += '<label for="js-field-required-' + field.name + '">';
 									html += '<input type="checkbox" name="is_required" id="js-field-required"' + ((field.required) ? ' checked="checked"' : '') + '>';
 									html += 'Is this field required?';
 								html += '</label>';
@@ -195,8 +243,9 @@ SpeakUp = (function($){
 
 				html += '<ul class="actions">';
 					html += '<li><a href="#" id="js-delete-field" alt="Delete this field" title="Delete this field" class="delete">Delete</a></li>';
-					html += '<li><a href="#" id="js-save-field" alt="Save this field" title="Save this field">Save</a></li>';
+					html += '<li><button type="submit" id="js-save-field" alt="Save this field" title="Save this field">Save</button></li>';
 				html += '</ul>';
+				html += '</form>';
 			html += '</div>';
 
 		html += '</li>';
