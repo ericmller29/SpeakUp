@@ -15,7 +15,7 @@ function speak_up_assets(){
 	wp_enqueue_style('speak-up', plugin_dir_url( __FILE__ ) . 'css/speak_up.css');
 	wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
 
-	wp_enqueue_script('speak-up', plugin_dir_url( __FILE__ ) . 'js/SpeakUp.app.js', array(), false, true);
+	wp_enqueue_script('speak-up', plugin_dir_url( __FILE__ ) . 'js/SpeakUp.admin.js', array(), false, true);
 }
 
 function speak_up_init(){
@@ -116,7 +116,7 @@ function speak_up_options_page(){ ?>
 	<div class="wrap">
 		<h2>Speak Up Options</h2>
 
-		<form action="options.php" method="post">
+		<form action="options.php" method="post" name="speak_up_options">
 			<?php settings_fields('speak_up_options'); ?>
 			
 			<?php do_settings_sections('speak-up'); ?>

@@ -195,6 +195,9 @@ SpeakUp = (function($){
 
 		$(this).parent().parent().parent().parent().parent().find('.options').slideUp('fast');
 		$(this).parent().parent().parent().parent().parent().removeClass('active');
+
+		save();
+
 		e.preventDefault();
 	}
 
@@ -256,6 +259,12 @@ SpeakUp = (function($){
 
 		return html;
 	};
+
+	function save(){
+		var formData = $('form[name="speak_up_options"]').serialize();
+
+		$.post('options.php', formData);
+	}
 
 	return app;
 
