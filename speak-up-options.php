@@ -41,12 +41,65 @@ function speak_up_form_fields(){ ?>
 		<div class="postbox-container form-fields">		
 			<div class="postbox">
 				<h3 class="hndle">Form Fields</h3>
-
+<!-- 
 				<p class="no-fields" id="js-no-fields">
 					You have not created any fields yet!
 				</p>
-				<ul class="forms-list" id="js-fields-list"></ul>
+				<ul class="forms-list" id="js-fields-list"></ul> -->
 
+				<?php
+					$fields = json_decode($options['fields'])->fields;
+				?>
+				<?php if(count($fields) > 0): ?>
+				<ul class="forms-list" id="js-fields-list">
+					<?php foreach($fields as $field): ?>
+						<li>
+							<a href="#" alt="Open the options for the <?php echo $field->label; ?> field" title="Open the options for the <?php echo $field->label; ?> field" id="js-toggle-options">
+								<h4><?php echo $field->label; ?></h4>
+
+								<i class="fa fa-caret-down"></i>
+							</a>
+							<div class="options">
+								<form class="options-form">
+									<div class="grid">
+										<div class="half">
+											<label for="field_name">Field Name:</label>
+											<input type="text" name="field_name" id="field_name" placeholder="Field Name" value="<?php echo $field->name; ?>">
+										</div>
+										<div class="half right">
+											<label for="placeholder">Placeholder:</label>
+											<input type="text" name="placeholder" id="placeholder" placeholder="Placeholder" value="<?php echo $field->placeholder; ?>">
+										</div>
+										<div class="half">
+											<label for="field_id">Field ID:</label>
+											<input type="text" name="field_id" id="field_id" placeholder="Field ID" value="<?php echo $field->field_id; ?>">
+										</div>
+										<div class="half right">
+											<label for="container_class">Container Class:</label>
+											<input type="text" name="container_class" id="container_class" placeholder=".col-md-6" value="<?php echo $field->container_class; ?>">
+										</div>
+
+										<div class="full">
+											<label for="js-field-required-<?php echo $field->name; ?>">
+												<input type="checkbox" name="is_required" id="js-field-required"<?php echo ($field->required) ? ' checked="checked"' : ''; ?>>
+												Is this field required?
+											</label>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><a href="#" id="js-delete-field" alt="Delete this field" title="Delete this field" class="delete">Delete</a></li>
+										<li><button type="submit" id="js-save-field" alt="Save this field" title="Save this field">Save</button></li>
+									</ul>
+								</form>
+							</div>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+				<?php else: ?>
+				<p class="no-fields" id="js-no-fields">
+					You have not created any fields yet!
+				</p>
+				<?php endif; ?>
 			</div>
 		</div>
 

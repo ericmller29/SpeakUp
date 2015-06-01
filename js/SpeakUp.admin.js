@@ -19,7 +19,7 @@ SpeakUp = (function($){
 	app.init = function(){
 		_this = this;
 
-		_this.checkForValues();
+		// _this.checkForValues();
 		_this.addListeners();
 	};
 
