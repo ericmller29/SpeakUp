@@ -196,7 +196,7 @@ SpeakUp = (function($){
 		$(this).parent().parent().parent().parent().parent().find('.options').slideUp('fast');
 		$(this).parent().parent().parent().parent().parent().removeClass('active');
 
-		// save();
+		save();
 
 		e.preventDefault();
 	}
