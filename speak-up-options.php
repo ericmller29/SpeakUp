@@ -41,17 +41,17 @@ function speak_up_form_fields(){ ?>
 		<div class="postbox-container form-fields">		
 			<div class="postbox">
 				<h3 class="hndle">Form Fields</h3>
-<!-- 
+
 				<p class="no-fields" id="js-no-fields">
 					You have not created any fields yet!
 				</p>
-				<ul class="forms-list" id="js-fields-list"></ul> -->
+				<ul class="forms-list" id="js-fields-list"></ul>
 
 				<?php
 					$fields = json_decode($options['fields'])->fields;
 				?>
 				<?php if(count($fields) > 0): ?>
-				<ul class="forms-list" id="js-fields-list">
+<!-- 				<ul class="forms-list" id="js-fields-list">
 					<?php foreach($fields as $field): ?>
 						<li>
 							<a href="#" alt="Open the options for the <?php echo $field->label; ?> field" title="Open the options for the <?php echo $field->label; ?> field" id="js-toggle-options">
@@ -99,7 +99,7 @@ function speak_up_form_fields(){ ?>
 				<p class="no-fields" id="js-no-fields">
 					You have not created any fields yet!
 				</p>
-				<?php endif; ?>
+				<?php endif; ?> -->
 			</div>
 		</div>
 
